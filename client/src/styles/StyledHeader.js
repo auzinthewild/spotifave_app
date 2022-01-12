@@ -62,7 +62,7 @@ const StyledHeader = styled.header`
 
   h1.header__name {
     font-size: clamp(2.5rem, 10vw, 6rem);
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1;
     margin: 0 0 var(--spacing-xs) 0;
 

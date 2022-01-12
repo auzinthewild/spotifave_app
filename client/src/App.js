@@ -10,10 +10,14 @@ import {
   Route,
 } from "react-router-dom";
 import styled from "styled-components/macro";
-import { Login, Profile, TopArtists } from "./pages";
-import TopTracks from "./pages/TopTracks";
-import PlaylistID from "./pages/PlaylistID";
-import Playlists from "./pages/Playslists";
+import {
+  Login,
+  Profile,
+  TopArtists,
+  TopTracks,
+  Playlist,
+  Playlists,
+} from "./pages";
 
 const StyledLogoutButton = styled.button`
   position: absolute;
@@ -66,7 +70,7 @@ function App() {
                 <Route path="/" element={<Profile />} />
                 <Route path="/top-artists" element={<TopArtists />} />
                 <Route path="/top-tracks" element={<TopTracks />} />
-                <Route path="/playlists/:id" element={<PlaylistID />} />
+                <Route path="/playlists/:id" element={<Playlist />} />
                 <Route path="/playlists" element={<Playlists />} />
               </Routes>
             </BrowserRouter>
