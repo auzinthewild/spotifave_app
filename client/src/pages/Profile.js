@@ -40,7 +40,6 @@ const Profile = () => {
   }, []);
 
   console.log(topTracks);
-  let arr = [];
   return (
     <>
       {profile && (
