@@ -29,6 +29,8 @@ const LOGIN_URI =
     ? "http://localhost:8888/login"
     : "https://spotifave-app.herokuapp.com/login";
 
+console.log(LOGIN_URI);
+
 const Login = () => (
   <StyledLoginContainer>
     <StyledLoginButton href={LOGIN_URI}>Log in to Spotify</StyledLoginButton>

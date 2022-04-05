@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./styles";
 import { useState, useEffect } from "react";
-import { accessToken, logout } from "./spotify.js";
+import { accessToken, logout, createTopTracksPlaylist } from "./spotify.js";
 import {
   Outlet,
   Link,
@@ -20,6 +20,22 @@ import {
 } from "./pages";
 
 const StyledLogoutButton = styled.button`
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--white);
+  font-size: var(--fz-sm);
+  font-weight: 700;
+  border-radius: var(--border-radius-pill);
+  z-index: 10;
+  @media (min-width: 768px) {
+    right: var(--spacing-lg);
+  }
+`;
+
+const StyledCreatePlaylistButton = styled.button`
   position: absolute;
   top: var(--spacing-sm);
   right: var(--spacing-md);
@@ -62,6 +78,9 @@ function App() {
       ) : (
         <>
           <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
+          <StyledCreatePlaylistButton onClick={createTopTracksPlaylist}>
+            Create Playlist
+          </StyledCreatePlaylistButton>
 
           <div>
             <BrowserRouter>

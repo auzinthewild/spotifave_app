@@ -37,6 +37,8 @@ const getAccessToken = () => {
     hasTokenExpired() ||
     LOCALSTORAGE_VALUES.accessToken === "undefined"
   ) {
+    console.log("HEEII");
+    console.log(hasTokenExpired());
     refreshToken();
   }
 
@@ -57,6 +59,7 @@ const getAccessToken = () => {
     // Set timestamp
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
     // Return access token from query params
+    window.location = window.location.pathname;
     return queryParams[LOCALSTORAGE_KEYS.accessToken];
   }
 
@@ -74,26 +77,32 @@ const hasTokenExpired = () => {
     return false;
   }
   const millisecondsElapsed = Date.now() - Number(timestamp);
+  console.log(`access token ${accessToken} expireTime ${expireTime}`);
+  console.log(millisecondsElapsed / 1000 > Number(expireTime));
+  console.log(Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000);
+  console.log(Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000 < 1000);
   return millisecondsElapsed / 1000 > Number(expireTime);
 };
 
 const refreshToken = async () => {
   try {
-    // Log out if there is no refresh token stored or when we've managed to get into a reload infinitee loop
+    // Log out if there is no refresh token stored or when we've managed to get into a reload infinite loop
     if (
       !LOCALSTORAGE_VALUES.refreshToken ||
       LOCALSTORAGE_VALUES.refreshToken === "undefined" ||
       Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000 < 1000
     ) {
+      console.log("No refresh token available, logging out");
       console.error("No refresh token available");
+
       logout();
     }
-
+    console.log("made it past the if statement");
     // Use `/refresh_token` endpoint from our Node app
     const { data } = await axios.get(
       `/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`
     );
-
+    console.log("made it past the /refresh_token route");
     // Update localStorage values
     window.localStorage.setItem(
       LOCALSTORAGE_KEYS.accessToken,
@@ -102,7 +111,8 @@ const refreshToken = async () => {
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
 
     // Reload the page for localStorage updates to be reflected
-    window.location.reload();
+    // window.location = window.location.pathname;
+    //window.location.reload();
   } catch (e) {
     console.error(e);
   }
@@ -117,8 +127,12 @@ export const logout = () => {
   for (const property in LOCALSTORAGE_KEYS) {
     window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);
   }
+
   // Navigate to homepage
-  window.location = window.location.origin;
+  console.log(window.location.pathname);
+  window.location = window.location.pathname;
+
+  // window.location.reload();
 };
 
 export const accessToken = getAccessToken();
@@ -185,4 +199,20 @@ export const getPlaylistById = (playlist_id) => {
  */
 export const getAudioFeaturesForTracks = (ids) => {
   return axios.get(`/audio-features?ids=${ids}`);
+};
+
+/**
+ * Create a playlist
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
+ * @param {object} props - information about playlist name/description/etc.
+ * @returns {Promise}
+ */
+export const createTopTracksPlaylist = (props) => {
+  const { user_id, playlist_name, pub, collab, playlist_description } = props;
+  return axios.post(`/me/playlists`, {
+    name: playlist_name,
+    public: pub,
+    collaborative: collab,
+    description: playlist_description,
+  });
 };
