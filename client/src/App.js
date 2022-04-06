@@ -78,9 +78,9 @@ function App() {
       ) : (
         <>
           <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
-          <StyledCreatePlaylistButton onClick={createTopTracksPlaylist}>
+          {/* <StyledCreatePlaylistButton onClick={createTopTracksPlaylist}>
             Create Playlist
-          </StyledCreatePlaylistButton>
+          </StyledCreatePlaylistButton> */}
 
           <div>
             <BrowserRouter>
