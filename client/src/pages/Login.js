@@ -6,6 +6,19 @@ const StyledLoginContainer = styled.main`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
+`;
+
+const StyledLoginContainer2 = styled.main`
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    font-size: 16px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 50%;
+    font-size: 18px;
+    margin: 30px;
+  }
 `;
 
 const StyledLoginButton = styled.a`
@@ -33,7 +46,7 @@ console.log(LOGIN_URI);
 
 const Login = () => (
   <StyledLoginContainer>
-    <div style={{ width: "50%", margin: "30px", fontSize: "18px" }}>
+    <StyledLoginContainer2>
       <h1>Spotifave</h1>
       <p style={{ fontSize: "18px" }}>
         If you're viewing this app from my portfolio, the Spotify API requires
@@ -43,9 +56,23 @@ const Login = () => (
         <br /> <br /> To address this, I've created the following YouTube video
         which gives an overview of the application and it's functionality.
       </p>
-      <div>Video Link</div>
-    </div>
-    <StyledLoginButton href={LOGIN_URI}>Log in to Spotify</StyledLoginButton>
+      <div>
+        <a
+          href="https://www.google.com"
+          style={{ color: "#525252" }}
+          target="_blank"
+        >
+          Watch the video
+        </a>
+      </div>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
+      >
+        <StyledLoginButton href={LOGIN_URI}>
+          Log in to Spotify
+        </StyledLoginButton>
+      </div>
+    </StyledLoginContainer2>
   </StyledLoginContainer>
 );
 

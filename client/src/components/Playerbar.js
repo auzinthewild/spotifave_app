@@ -6,8 +6,8 @@ import SpotifyPlayer from "react-spotify-web-playback";
 
 const StyledLogoutButton = styled.button`
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-md);
+  top: 16px;
+  right: 50px;
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: rgba(0, 0, 0, 0.7);
   color: var(--white);
@@ -17,6 +17,11 @@ const StyledLogoutButton = styled.button`
   z-index: 10;
   @media (min-width: 768px) {
     right: var(--spacing-lg);
+    width: 80px;
+    margin: 10px;
+    position: relative;
+    top: 0;
+    right: 0;
   }
 `;
 
