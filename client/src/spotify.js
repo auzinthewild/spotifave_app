@@ -77,10 +77,6 @@ const hasTokenExpired = () => {
     return false;
   }
   const millisecondsElapsed = Date.now() - Number(timestamp);
-  console.log(`access token ${accessToken} expireTime ${expireTime}`);
-  console.log(millisecondsElapsed / 1000 > Number(expireTime));
-  console.log(Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000);
-  console.log(Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000 < 1000);
   return millisecondsElapsed / 1000 > Number(expireTime);
 };
 
