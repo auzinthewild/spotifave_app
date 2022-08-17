@@ -36,7 +36,6 @@ const stateKey = "spotify_auth_state";
 
 // login route handler
 app.get("/login", (req, res) => {
-  console.log("hit");
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 

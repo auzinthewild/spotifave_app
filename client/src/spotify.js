@@ -97,12 +97,12 @@ const refreshToken = async () => {
 
       logout();
     }
-    console.log("made it past the if statement");
+
     // Use `/refresh_token` endpoint from our Node app
     const { data } = await axios.get(
       `/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`
     );
-    console.log("made it past the /refresh_token route");
+
     // Update localStorage values
     window.localStorage.setItem(
       LOCALSTORAGE_KEYS.accessToken,
@@ -129,7 +129,7 @@ export const logout = () => {
   }
 
   // Navigate to homepage
-  console.log(window.location.pathname);
+
   window.location = window.location.pathname;
 
   // window.location.reload();
