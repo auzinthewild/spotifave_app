@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8888;
 
 const path = require("path");
 // Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 /**
  * Generates a random string containing numbers and letters
@@ -36,12 +36,18 @@ const stateKey = "spotify_auth_state";
 
 // login route handler
 app.get("/login", (req, res) => {
+  console.log("hit");
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = ["user-read-private", "user-read-email", "user-top-read"].join(
-    " "
-  );
+  const scope = [
+    "streaming",
+    "user-read-playback-state",
+    "user-modify-playback-state",
+    "user-read-private",
+    "user-read-email",
+    "user-top-read",
+  ].join(" ");
 
   const queryParams = new URLSearchParams({
     client_id: CLIENT_ID,
@@ -50,12 +56,13 @@ app.get("/login", (req, res) => {
     state: state,
     scope: scope,
   }).toString();
-
+  console.log(queryParams);
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
 // callback route handler
 app.get("/callback", (req, res) => {
+  console.log("hit");
   const code = req.query.code || null;
   const dataParams = new URLSearchParams({
     grant_type: "authorization_code",
@@ -76,6 +83,7 @@ app.get("/callback", (req, res) => {
   })
     .then((response) => {
       if (response.status === 200) {
+        console.log("200");
         const { access_token, refresh_token, expires_in } = response.data;
         const queryParams = new URLSearchParams({
           access_token,
@@ -124,9 +132,9 @@ app.get("/refresh_token", (req, res) => {
 });
 
 // All remaining requests return the React app, so it can handle routing.
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+// });
 
 app.listen(PORT, () => {
   console.log(`Express app listening at http://localhost:${PORT}`);

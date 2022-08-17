@@ -8,7 +8,7 @@ import {
   Loader,
 } from "../components";
 
-const TopTracks = () => {
+const TopTracks = ({ setTrackUri }) => {
   const [topTracks, setTopTracks] = useState(null);
   const [activeRange, setActiveRange] = useState("short");
 
@@ -30,7 +30,7 @@ const TopTracks = () => {
         />
 
         {topTracks && topTracks.items ? (
-          <TrackList tracks={topTracks.items} />
+          <TrackList setTrackUri={setTrackUri} tracks={topTracks.items} />
         ) : (
           <Loader />
         )}

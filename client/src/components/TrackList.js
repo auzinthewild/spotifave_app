@@ -1,12 +1,20 @@
 import { formatDuration } from "../utils";
 import { StyledTrackList } from "../styles";
 
-const TrackList = ({ tracks }) => (
+const TrackList = ({ tracks, setTrackUri }) => (
   <>
     {tracks && tracks.length ? (
       <StyledTrackList>
         {tracks.map((track, i) => (
-          <li className="track__item" key={i}>
+          <li
+            className="track__item"
+            key={i}
+            style={{ cursor: "pointer" }}
+            onDoubleClick={() => {
+              console.log(track.uri);
+              setTrackUri(track.uri);
+            }}
+          >
             <div className="track__item__num">{i + 1}</div>
             <div className="track__item__title-group">
               {track.album.images.length && track.album.images[2] && (

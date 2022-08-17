@@ -15,7 +15,7 @@ import {
 } from "../components";
 import { StyledHeader } from "../styles";
 
-const Profile = () => {
+const Profile = ({ setTrackUri }) => {
   const [profile, setProfile] = useState(null);
   const [playlists, setPlaylists] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
@@ -74,17 +74,19 @@ const Profile = () => {
             {topArtists && topTracks && playlists ? (
               <>
                 <SectionWrapper
+                  title="Top tracks this month"
+                  seeAllLink="/top-tracks"
+                >
+                  <TrackList
+                    tracks={topTracks.items.slice(0, 10)}
+                    setTrackUri={setTrackUri}
+                  />
+                </SectionWrapper>
+                <SectionWrapper
                   title="Top artists this month"
                   seeAllLink="/top-artists"
                 >
                   <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
-                </SectionWrapper>
-
-                <SectionWrapper
-                  title="Top tracks this month"
-                  seeAllLink="/top-tracks"
-                >
-                  <TrackList tracks={topTracks.items.slice(0, 10)} />
                 </SectionWrapper>
 
                 <SectionWrapper

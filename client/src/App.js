@@ -18,6 +18,7 @@ import {
   Playlist,
   Playlists,
 } from "./pages";
+import Playerbar from "./components/Playerbar";
 
 const StyledLogoutButton = styled.button`
   position: absolute;
@@ -64,6 +65,7 @@ function ScrollToTop() {
 
 function App() {
   const [token, setToken] = useState(null);
+  const [trackUri, setTrackUri] = useState("");
 
   useEffect(() => {
     setToken(accessToken);
@@ -77,7 +79,8 @@ function App() {
         <Login />
       ) : (
         <>
-          <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
+          <Playerbar accessToken={accessToken} trackUri={trackUri} />
+          {/* <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton> */}
           {/* <StyledCreatePlaylistButton onClick={createTopTracksPlaylist}>
             Create Playlist
           </StyledCreatePlaylistButton> */}
@@ -86,11 +89,26 @@ function App() {
             <BrowserRouter>
               <ScrollToTop />
               <Routes>
-                <Route path="/" element={<Profile />} />
-                <Route path="/top-artists" element={<TopArtists />} />
-                <Route path="/top-tracks" element={<TopTracks />} />
-                <Route path="/playlists/:id" element={<Playlist />} />
-                <Route path="/playlists" element={<Playlists />} />
+                <Route
+                  path="/"
+                  element={<Profile setTrackUri={setTrackUri} />}
+                />
+                <Route
+                  path="/top-artists"
+                  element={<TopArtists setTrackUri={setTrackUri} />}
+                />
+                <Route
+                  path="/top-tracks"
+                  element={<TopTracks setTrackUri={setTrackUri} />}
+                />
+                <Route
+                  path="/playlists/:id"
+                  element={<Playlist setTrackUri={setTrackUri} />}
+                />
+                <Route
+                  path="/playlists"
+                  element={<Playlists setTrackUri={setTrackUri} />}
+                />
               </Routes>
             </BrowserRouter>
             {/* <Outlet /> */}

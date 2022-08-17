@@ -6,7 +6,7 @@ import { getPlaylistById, getAudioFeaturesForTracks } from "../spotify";
 import { TrackList, SectionWrapper, Loader } from "../components";
 import { StyledHeader, StyledDropdown } from "../styles";
 
-const Playlist = () => {
+const Playlist = ({ setTrackUri }) => {
   const { id } = useParams();
   const [playlist, setPlaylist] = useState(null);
   const [tracksData, setTracksData] = useState(null);
@@ -147,7 +147,11 @@ const Playlist = () => {
                   ))}
                 </select>
               </StyledDropdown>
-              {sortedTracks ? <TrackList tracks={sortedTracks} /> : <Loader />}
+              {sortedTracks ? (
+                <TrackList setTrackUri={setTrackUri} tracks={sortedTracks} />
+              ) : (
+                <Loader />
+              )}
             </SectionWrapper>
           </main>
         </>
