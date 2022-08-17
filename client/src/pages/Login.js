@@ -47,8 +47,8 @@ console.log(LOGIN_URI);
 const Login = () => (
   <StyledLoginContainer>
     <StyledLoginContainer2>
-      <h1>Spotifave</h1>
-      <p style={{ fontSize: "18px" }}>
+      <h1 style={{ color: "#A7B395" }}>Spotifave</h1>
+      <p style={{ fontSize: "18px", color: "#ffffff" }}>
         If you're viewing this app from my portfolio, the Spotify API requires
         users' logins to be registered in order to use the API's functionality.
         This means that unless I've registered your Spotify account with the
@@ -56,11 +56,12 @@ const Login = () => (
         <br /> <br /> To address this, I've created the following YouTube video
         which gives an overview of the application and it's functionality.
       </p>
-      <div>
+      <div style={{ marginTop: "24px" }}>
         <a
           href="https://www.google.com"
-          style={{ color: "#525252" }}
+          style={{ color: "#B3B3B3", fontSize: "18px" }}
           target="_blank"
+          rel="noreferrer"
         >
           Watch the video
         </a>
