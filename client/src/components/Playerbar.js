@@ -28,7 +28,7 @@ function Playerbar({ accessToken, trackUri }) {
   if (!accessToken) return null;
   return (
     <StyledPlayerbar>
-      <div style={{ minWidth: "800px" }}>
+      <div style={{ width: "100%" }}>
         <SpotifyPlayer
           styles={{
             color: "#fff",
