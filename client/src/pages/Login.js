@@ -53,18 +53,21 @@ const Login = () => (
         users' logins to be registered in order to use the API's functionality.
         This means that unless I've registered your Spotify account with the
         app, you won't be able to use it.
-        <br /> <br /> To address this, I've created the following YouTube video
-        which gives an overview of the application and it's functionality.
+        <br /> <br /> To address this, I've created the following video which
+        gives an overview of the application and it's functionality.
       </p>
       <div style={{ marginTop: "24px" }}>
-        <a
-          href="https://www.google.com"
-          style={{ color: "#B3B3B3", fontSize: "18px" }}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Watch the video
-        </a>
+        <video controls width="100%">
+          <source
+            src="https://www.austinbodin.com/spotifavedemo.webm"
+            type="video/webm"
+          />
+          <source
+            src="https://www.austinbodin.com/spotifavedemo.mp4"
+            type="video/mp4"
+          />
+          Sorry, your browser doesn't support embedded videos.
+        </video>
       </div>
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
