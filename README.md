@@ -14,5 +14,5 @@ npm start
 
 ## Tech 
 
-Built with the Spotify API, React, and Node. 
+Built with the Spotify API, React, and Express/NodeJS. 
 
